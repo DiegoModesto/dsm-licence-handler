@@ -15,7 +15,7 @@ services:
     - "--mode=server"
     - "--frontend-port=57000"
     - "--backend-port=57200"
-    - "--roslyn-worker-port=57408"
+    - "--roslyn-worker-port=57447"
     - "--timeout=60"
     environment:
       ASPNETCORE_ENVIRONMENT: "Development"
@@ -24,14 +24,14 @@ services:
       RESHARPER_LOG_CONF: "/etc/opt/JetBrains/RiderDebuggerTools/backend-log.xml"
     image: "webapi:dev"
     ports:
-    - "127.0.0.1:57008:57000"
-    - "127.0.0.1:57208:57200"
-    - "127.0.0.1:57408:57408"
+    - "127.0.0.1:57047:57000"
+    - "127.0.0.1:57247:57200"
+    - "127.0.0.1:57447:57447"
     volumes:
     - "/Users/diegosanches/Documents/Repos/DSM/DSM-licence-handler/src/Web.API:/app:rw"
     - "/Users/diegosanches/Documents/Repos/DSM/DSM-licence-handler:/src:rw"
     - "/Users/diegosanches/.nuget/packages:/home/app/.nuget/packages"
     - "/Users/diegosanches/.local/share/JetBrains/RiderRemoteDebugger/2025.1.2/LinuxArm64:/opt/JetBrains/RiderDebuggerTools"
     - "/Applications/Rider.app/Contents/bin/backend-log.xml:/etc/opt/JetBrains/RiderDebuggerTools/backend-log.xml"
-    - "/Users/diegosanches/Library/Logs/JetBrains/Rider2025.1/DebuggerWorker/JetBrains.Debugger.Worker.2025_6_11_17_03_04:/var/opt/JetBrains/RiderDebuggerTools:rw"
+    - "/Users/diegosanches/Library/Logs/JetBrains/Rider2025.1/DebuggerWorker/JetBrains.Debugger.Worker.2025_6_12_14_45_23:/var/opt/JetBrains/RiderDebuggerTools:rw"
     working_dir: "/app"
