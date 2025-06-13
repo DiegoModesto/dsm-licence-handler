@@ -1,4 +1,6 @@
 using Application;
+using Asp.Versioning;
+using Asp.Versioning.Builder;
 using Infra;
 using Serilog;
 using Web.API;
@@ -21,7 +23,17 @@ builder
     .AddInfrastructure(builder.Configuration);
 
 WebApplication app = builder.Build();
-app.MapEndpoints();
+
+ApiVersionSet apiVersionSet = app.NewApiVersionSet()
+    .HasApiVersion(new ApiVersion(1))
+    .ReportApiVersions()
+    .Build();
+
+RouteGroupBuilder versionedGroup = app
+    .MapGroup("api/v{version:apiVersion}")
+    .WithApiVersionSet(apiVersionSet);
+
+app.MapEndpoints(versionedGroup);
 
 if (app.Environment.IsDevelopment())
 {

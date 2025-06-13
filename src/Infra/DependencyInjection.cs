@@ -3,6 +3,7 @@ using Application.Abstractions;
 using Application.Abstractions.Authentication;
 using Application.Abstractions.Data;
 using Infra.Authentication;
+using Infra.Authorization;
 using Infra.Database;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -19,7 +20,8 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         => services
             .AddDatabase(configuration)
-            .AddAuthenticationInternal(configuration);
+            .AddAuthenticationInternal(configuration)
+            .AddAuthorizationInternal();
 
     private static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
@@ -56,6 +58,8 @@ public static class DependencyInjection
         services.AddHttpContextAccessor();
         
         services.AddScoped<IUserContext, UserContext>();
+        services.AddSingleton<IPasswordHasher, PasswordHasher>();
+        services.AddSingleton<ITokenProvider, TokenProvider>();
         
         return services;
     }
@@ -64,11 +68,9 @@ public static class DependencyInjection
     {
         services.AddAuthorization();
 
-        //services.AddScoped<PermissionProvider>();
-
-        //services.AddTransient<IAuthorizationHandler, PermissionAuthorizationHandler>();
-
-        //services.AddTransient<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
+        services.AddScoped<PermissionProvider>();
+        services.AddTransient<IAuthorizationHandler, PermissionAuthorizationHandler>();
+        services.AddTransient<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
 
         return services;
     }

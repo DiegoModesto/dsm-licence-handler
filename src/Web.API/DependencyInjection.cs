@@ -1,3 +1,4 @@
+using Asp.Versioning;
 using Web.API.Extensions;
 
 namespace Web.API;
@@ -8,6 +9,17 @@ public static class DependencyInjection
     {
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
+
+        services
+            .AddApiVersioning(options =>
+            {
+                options.DefaultApiVersion = new ApiVersion(1);
+                options.ApiVersionReader = new UrlSegmentApiVersionReader();
+            }).AddApiExplorer(options =>
+            {
+                options.GroupNameFormat = "'v'V";
+                options.SubstituteApiVersionInUrl = true;
+            });
         
         services.AddEndpoints(typeof(DependencyInjection).Assembly);
         

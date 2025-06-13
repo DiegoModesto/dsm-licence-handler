@@ -16,4 +16,14 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
         modelBuilder.HasDefaultSchema(Schemas.Default);
     }
+    
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        int result = await base.SaveChangesAsync(cancellationToken);
+
+        //TODO: Publicar evento de domínio
+        //await PublishDomainEventsAsync();
+
+        return result;
+    }
 }
