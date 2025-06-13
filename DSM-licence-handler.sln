@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Applicat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.API", "src\Web.API\Web.API.csproj", "{2CCBDD54-36A7-40BC-87E9-EAB87C3D6019}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A37CB7B2-C274-4E31-9702-C80B03690728}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Tests", "tests\Application.Tests\Application.Tests.csproj", "{3830EFFE-B36B-4DCA-A81F-AAD87867F3E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,5 +47,12 @@ Global
 		{2CCBDD54-36A7-40BC-87E9-EAB87C3D6019}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CCBDD54-36A7-40BC-87E9-EAB87C3D6019}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CCBDD54-36A7-40BC-87E9-EAB87C3D6019}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3830EFFE-B36B-4DCA-A81F-AAD87867F3E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3830EFFE-B36B-4DCA-A81F-AAD87867F3E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3830EFFE-B36B-4DCA-A81F-AAD87867F3E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3830EFFE-B36B-4DCA-A81F-AAD87867F3E3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3830EFFE-B36B-4DCA-A81F-AAD87867F3E3} = {A37CB7B2-C274-4E31-9702-C80B03690728}
 	EndGlobalSection
 EndGlobal
